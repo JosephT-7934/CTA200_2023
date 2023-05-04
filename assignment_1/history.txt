@@ -1,0 +1,47 @@
+   53  mkdir /mnt/scratch-lustre/jtang/CTA200_2023
+   54  cd /mnt/scratch-lustre/jtang
+   55  ls
+   56  /mkdir /mnt/scratch-lustre/jtang/CTA200_2023
+   57  /mnt/scratch-lustre/jtang/CTA200_2023
+   58  cd /mnt/scratch-lustre/jtang/CTA200_2023
+   59  mkdir /mnt/scratch-lustre/jtang/CTA200_2023/assignment_1
+   60  cd /mnt/scratch-lustre/CTA200_2023
+   61  ls
+   62  touch README.md
+   63  ls
+   64  vi README.md
+   65  cd /mnt/scratch-lustre/murray
+   66  ls
+   67  find -name "Hello_world.py"
+   68  find Hello_world.py
+   69  cd /home/murray
+   70  ls
+   71  find Hello_world.py
+   72  cp /home/murray/Hello_world.py /mnt/scratch-lustre/jtang/assignment_1
+   73  cp /home/murray/Hello_world.c /mnt/scratch-lustre/jtang/assignment_1
+   74  cp -av /home/murray/Hello_world.c /mnt/scratch-lustre/jtang/assignment_1
+   75  cp -av /home/murray/Hello_world.c /mnt/scratch-lustre/jtang/CTA200_2023/assignment_1
+   76  cp -av /home/murray/Hello_world.py /mnt/scratch-lustre/jtang/CTA200_2023/assignment_1
+   77  cd /mnt/scratch-lustre/jtang/CTA200_2023/assignment_1
+   78  ls
+   79  mv Hello_world.c Hello_world_tang.c
+   80  mv Hello_world.py Hello_world_tang.py
+   81  ls
+   82  module load gcc
+   83  gcc Hello_world_tang.c -o Hello_world.x
+   84  ls
+   85  ./Hello_world.x 
+   86  ./Hello_world.py
+   87  module load python
+   88  python Hello_world_tang.py
+   89  vi Hello_world_tang.py
+   90  vi Hello_world.c
+   91  vi Hello_world_tang.c
+   92  gcc Hello_world_tang.c -o Hello_world.x
+   93  ./Hello_world.x
+   94  python Hello_world_tang.py
+   95  ./Hello_world.x > output_c.txt
+   96  python Hello_world.py > output_python.txt
+   97  python Hello_world_tang.py > output_python.txt
+   98  history
+
