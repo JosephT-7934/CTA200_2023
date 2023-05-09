@@ -1,0 +1,50 @@
+\documentclass{article}
+\usepackage{graphicx} % Required for inserting images
+
+\title{CTA200 Assignment 3}
+\author{Joseph Tang}
+\date{May 2023}
+
+\begin{document}
+
+
+\textbf{NOTE: Please refer to the pdf file "Figure" for the referenced figures}
+
+\section{Question 1}
+In question 1, some points in the complex plane (c = x + yi) where $-2 < x < 2$ and $-2 < y < 2$ where iterated in the following equation:
+$$z_{i+1} = z_{i}^2 + c$$ 
+During this iteration, some values of x and y will converge / be bounded by absolute values; however, some values of x and y diverge towards infinity. \\
+
+\textbf{Method:}
+Firstly, the equation above was put into a function in a separate python file. The function was a while loop that iterated $z_0 = 0$ with an inputted x and y value which was turned into the complex equation c. The iteration would stop under 2 conditions. The code would stop if the real component of the iterated $z_1$ was greater than 1e155 since an error message would occur when a larger number was squared. Additionally, if the real component was greater than 1e155, the next iterated value would be (nan + nanj) which is less than ideal. The code also looked at whether the iterated value was the same as the previous. This would stop finite iterations faster without having to be iterated up to 100 times. However, a caveat is that some complex values oscillate between 2 values. For example, c = (-1, 0). In the jupyter notebook, a 2 for loops were created to determine whether their values converged or diverged when iterated on. These values were separated into a list that converged and a list that diverged. These values were then graphed. The values that diverged were then placed onto a colour scale based on the number of iterations it took for them to obtain a real or imaginary value greater than 1e155. These values were then graphed alongside their colour scale.\\
+
+\textbf{Results:}
+The function for creating the complex iterations works well for general cases, however, changes could be made to specifically look for the point where the iteration approaches infinity. This would widen the range of iterations needed to create graph 2. 
+
+Figure 1 was made using 2 nested for loops which was extremely slow and could be adapted in the future with arrays for faster processing of the divergence and convergence.
+
+
+Both figures resemble fractal like behaviour which is especially apparent when the number of x and y values between [-2, 2] are decreased or increased. Moreover, from figure 2, it appears that the number of iterations it takes for z to diverge is dependant on how far away from the origin the point is. 
+
+\section{Question 2}
+In question 2, the following 3 differential equation from Lorenz' paper on "Deterministic Non-Periodic Flow" were solved in python. 
+$$\dot{X} = -\sigma (X - Y)$$
+$$\dot{Y} = rX - Y - XZ $$
+$$\dot{Z} = -bZ + XY $$
+\textbf{Method:}
+The system of differential equations were solved by first creating a function that returned the right hand side of each equation. The initial conditions $W_0$ = (0.0, 1.0, 0.0), t = [0, 60], and [$\sigma$, r, b] = [10., 28., 8./3.] were also created. The function $solve_ivp$ from scipy.integrate was then used with these parameters to solve the differential equation W, as a function of (X, Y, Z). The Y value was then plotted against time / $\delta t$ in 3 separate chunks from [0, 1000], [1000, 2000], and [2000, 3000]. This can be seen in figure 3.
+
+The differential equations were then solved within a smaller time frame of t = (14, 19, 1000) to observe the solutions projection onto the X-Y and Y-Z plane. This projection can be seen in figures 4, and 5 respectively.
+
+The dependance on initial conditions was also tested by changing $W_0$ to be $W_0$ + [0.0, 1e-8, 0.0]. The system was then solved again with the same initial conditions and the difference was calculated by subtracting the time dependant X, Y, Z solutions obtained in the changed $W_0$ by the original $W_0$ values. The linalg.norm function in numpy was then used to obtain a single value for distance. This difference in distance was then plotted against time to obtain figure 6.\\
+
+\textbf{Results:}
+After solving and plotting the solution with the given initial conditions to create graph 1, it can be observed that it differs slightly from that obtained from Lorenz' figure 1. This is likely caused by the non linear terms r and b in the second and third differential equations. Since the initial conditions were linear, this may have caused the slight deviation from Lorenz' figures. 
+
+Meanwhile, figures 4 and 5 matched Lorenz' solutions nearly identically with the exception of having to invert the y axis in the X-Y plane. This projection shows the chaotic nature that comes from differing initial conditions.
+
+In figure 5, 2 increasing oscillating straight lines were created with differing slopes. Lorenz found that the difference in initial conditions caused a straight line to form in a y-log plot which indicated an exponential growth in the difference for increasing time. Although there were a lot of fluctuations in figure 5, straight lines can still be observed indicating exponential growth in the difference between initial condition solutions for increasing time. This also supports the chaotic and turbulent nature of Earth's atmosphere. 
+
+
+
+\end{document}
